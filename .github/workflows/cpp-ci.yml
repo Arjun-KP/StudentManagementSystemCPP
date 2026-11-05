@@ -39,3 +39,12 @@ jobs:
 
       - name: Run tests
         run: ctest --test-dir build --output-on-failure --no-tests=error
+
+      - name: Upload Release application
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: StudentApp-windows-ucrt64-Release
+          path: build/StudentApp.exe
+          if-no-files-found: error
+          retention-days: 7
